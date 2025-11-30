@@ -96,8 +96,3 @@ To customize, override tokens in your own stylesheet:
 - ✅ **Dark theme**: Complete "Night at Sea" theme via `.theme-dark` class on `<html>`
 - ✅ **Micro-interactions**: Smooth transitions on hover, focus, and active states
 - ✅ **Web Components** (optional JS): `<frmwrk-theme-toggle>` and `<frmwrk-badge>` custom elements
-
----
-
-**Version**: 1.0.0  
-**Browser Support**: Chrome/Edge 99+, Firefox 97+, Safari 15.4+
