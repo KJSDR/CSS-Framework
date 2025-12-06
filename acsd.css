@@ -619,19 +619,6 @@
        outline-offset: 0.25em;
      }
      
-     button[type="reset"],
-     input[type="reset"] {
-       background-color: transparent;
-       color: var(--color-sea-mist);
-       border-color: var(--color-border);
-     }
-     
-     button[type="reset"]:hover,
-     input[type="reset"]:hover {
-       background-color: var(--color-subtle);
-       color: var(--color-anchor);
-     }
-     
      /* Details & Summary */
      details {
        margin: var(--space-lg) 0;
