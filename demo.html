@@ -23,9 +23,20 @@
 </head>
 <body>
 
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-  Theme
+<frmwrk-theme-toggle position="top-right"></frmwrk-theme-toggle>
+
+<!-- Demo Alert Button - positioned below theme toggle -->
+<button 
+  onclick="showDemoAlert()" 
+  style="position: fixed; top: 5rem; right: 1.5rem; z-index: 1000; padding: 0.5rem 1rem; background-color: var(--color-sea-deep, #0066cc); color: white; border: none; border-radius: 0.375rem; cursor: pointer; font-size: 0.875rem; font-weight: 500; transition: all 150ms ease;"
+  onmouseover="this.style.backgroundColor='var(--color-rust, #ff6b35)'" 
+  onmouseout="this.style.backgroundColor='var(--color-sea-deep, #0066cc)'"
+  aria-label="Show sample alert">
+  Show Alert
 </button>
+
+<!-- Container for dynamic alerts -->
+<div id="alert-container" style="position: fixed; top: 8.5rem; right: 1.5rem; max-width: 400px; z-index: 999;"></div>
 
 <header>
   <h1>CSS Framework Demo</h1>
@@ -38,7 +49,8 @@
     <a href="#media">Media</a> ·
     <a href="#tables">Tables</a> ·
     <a href="#forms">Forms</a> ·
-    <a href="#misc">Miscellaneous</a>
+    <a href="#misc">Miscellaneous</a> ·
+    <a href="#components">Web Components</a>
   </nav>
 </header>
 
@@ -333,36 +345,100 @@ greet("world");</code></pre>
     </article>
   </section>
 
+  <!-- WEB COMPONENTS -->
+  <section id="components" aria-labelledby="components-heading">
+    <header>
+      <h2 id="components-heading">Web Components</h2>
+    </header>
+
+    <article>
+      <h3>Theme Toggle Component</h3>
+      <p>The theme toggle in the top-right corner is a custom web component: <code>&lt;frmwrk-theme-toggle&gt;</code>. It persists your theme preference using localStorage.</p>
+
+      <h3>Alert Component</h3>
+      <p>Click the "Show Alert" button in the top-left to see a dismissible alert component. The <code>&lt;frmwrk-alert&gt;</code> component supports four variants:</p>
+
+      <frmwrk-alert variant="info">
+        <strong>Info:</strong> This is an informational message using the framework's blue palette.
+      </frmwrk-alert>
+
+      <frmwrk-alert variant="success" dismissible>
+        <strong>Success:</strong> Your changes have been saved! (This one is dismissible - click the ×)
+      </frmwrk-alert>
+
+      <frmwrk-alert variant="warning" dismissible>
+        <strong>Warning:</strong> Please review your settings before continuing.
+      </frmwrk-alert>
+
+      <frmwrk-alert variant="error" dismissible>
+        <strong>Error:</strong> Unable to complete the operation. Please try again.
+      </frmwrk-alert>
+
+      <h3>Badge Component</h3>
+      <p>Inline badges for labels and status indicators: 
+        <frmwrk-badge>New</frmwrk-badge>
+        <frmwrk-badge variant="primary">Featured</frmwrk-badge>
+        <frmwrk-badge variant="accent">Hot</frmwrk-badge>
+        <frmwrk-badge variant="subtle">Beta</frmwrk-badge>
+      </p>
+
+      <h4>Component Features</h4>
+      <ul>
+        <li>Built with Web Components (Custom Elements API)</li>
+        <li>Shadow DOM for style encapsulation</li>
+        <li>Use framework design tokens for consistent styling</li>
+        <li>Accessible with proper ARIA attributes and keyboard support</li>
+        <li>Lifecycle callbacks for proper setup and cleanup</li>
+        <li>Custom events for component communication</li>
+      </ul>
+    </article>
+  </section>
+
 </main>
 
 <footer>
   <p>&copy; 2025 CSS Framework Demo. Built to test your styles, not your patience.</p>
 </footer>
 
+<!-- Load Web Components -->
+<script src="acsd-components.js"></script>
+
 <script>
-  // Theme Toggle Functionality
-  function toggleTheme() {
-    const html = document.documentElement;
-    const currentTheme = html.classList.contains('theme-dark') ? 'dark' : 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  // Show Demo Alert Function
+  let alertCounter = 0;
+  const alertVariants = ['info', 'success', 'warning', 'error'];
+  const alertMessages = [
+    'This is a sample informational alert!',
+    'Action completed successfully!',
+    'Please review this warning message.',
+    'An error occurred - please try again.'
+  ];
+
+  function showDemoAlert() {
+    const container = document.getElementById('alert-container');
     
-    if (newTheme === 'dark') {
-      html.classList.add('theme-dark');
-    } else {
-      html.classList.remove('theme-dark');
-    }
+    // Clear previous alerts
+    container.innerHTML = '';
     
-    // Save preference to localStorage
-    localStorage.setItem('theme', newTheme);
+    // Cycle through variants
+    const variantIndex = alertCounter % alertVariants.length;
+    const variant = alertVariants[variantIndex];
+    const message = alertMessages[variantIndex];
+    
+    // Create new alert
+    const alert = document.createElement('frmwrk-alert');
+    alert.setAttribute('variant', variant);
+    alert.setAttribute('dismissible', '');
+    alert.innerHTML = `<strong>${variant.charAt(0).toUpperCase() + variant.slice(1)}:</strong> ${message}`;
+    
+    // Listen for dismiss event
+    alert.addEventListener('alert-dismissed', (e) => {
+      console.log('Alert dismissed:', e.detail);
+    });
+    
+    container.appendChild(alert);
+    alertCounter++;
   }
-  
-  // Load saved theme preference on page load
-  (function() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('theme-dark');
-    }
-  })();
 </script>
 
 </body>
