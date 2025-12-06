@@ -15,7 +15,9 @@ Link the framework in your HTML `<head>`:
 Optionally, add Web Components for interactive features:
 
 ```html
-<script src="acsd-components.js" defer></script>
+<script src="frmwrk-badge.js" defer></script>
+<script src="frmwrk-alert.js" defer></script>
+<script src="frmwrk-theme-toggle.js" defer></script>
 ```
 
 Then write semantic HTML as normal. The framework automatically styles all standard elements (headings, paragraphs, lists, links, tables, forms, etc.) without requiring any classes.
@@ -95,4 +97,21 @@ To customize, override tokens in your own stylesheet:
 - ✅ **Custom form styling**: Cohesive, visually interactive form controls
 - ✅ **Dark theme**: Complete "Night at Sea" theme via `.theme-dark` class on `<html>`
 - ✅ **Micro-interactions**: Smooth transitions on hover, focus, and active states
-- ✅ **Web Components** (optional JS): `<frmwrk-theme-toggle>` and `<frmwrk-badge>` custom elements
+- ✅ **Web Components** (optional JS): `<frmwrk-theme-toggle>`, `<frmwrk-badge>`, and `<frmwrk-alert>` custom elements
+
+## Web Components
+
+### `<frmwrk-badge>` (Static Component)
+A simple inline badge for labels and status indicators. Solves the problem of inconsistent labeling across apps by providing a standardized component with three variants (primary, accent, subtle). Uses framework spacing, typography, and color tokens. Future improvements: icon support, size variants, dismissible badges.
+
+**Usage:** `<frmwrk-badge variant="accent">New</frmwrk-badge>`
+
+### `<frmwrk-alert>` (Interactive Component)
+Dismissible alert component for user notifications and feedback. Handles four message types (info, success, warning, error) with proper animations, keyboard accessibility, and event dispatching. Uses framework tokens for spacing, colors, borders, and shadows, with full dark theme support. Future improvements: auto-dismiss timers, action buttons, toast positioning.
+
+**Usage:** `<frmwrk-alert variant="success" dismissible>Changes saved!</frmwrk-alert>`
+
+### `<frmwrk-theme-toggle>` (Smart Component)
+Theme switcher that toggles between light and dark modes. Manages DOM manipulation, localStorage persistence, and dispatches custom events. Integrates deeply with framework tokens for consistent button styling. Future improvements: system preference detection, keyboard shortcuts, multiple theme options.
+
+**Usage:** `<frmwrk-theme-toggle position="top-right"></frmwrk-theme-toggle>`
