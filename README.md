@@ -79,25 +79,25 @@ All design values are defined as CSS custom properties in the tokens layer, ensu
 To customize, override tokens in your own stylesheet:
 ```css
 :root {
-  --color-accent: oklch(0.55 0.15 130); /* Change accent to green */
-  --space-md: 1.25rem; /* Adjust spacing */
+  --color-accent: oklch(0.55 0.15 130);
+  --space-md: 1.25rem;
 }
 ```
 
 ## Features Implemented
 
 **Required Features:**
-- ✅ Classless base styling for all semantic HTML elements
-- ✅ Layered CSS architecture with `@layer`
-- ✅ Comprehensive design token system
-- ✅ WCAG AA accessible (contrast, focus states, keyboard navigation)
-- ✅ Responsive design
+- Classless base styling for all semantic HTML elements
+- Layered CSS architecture with `@layer`
+- Comprehensive design token system
+- WCAG AA accessible (contrast, focus states, keyboard navigation)
+- Responsive design
 
 **Optional Enhancements:**
-- ✅ **Custom form styling**: Cohesive, visually interactive form controls
-- ✅ **Dark theme**: Complete "Night at Sea" theme via `.theme-dark` class on `<html>`
-- ✅ **Micro-interactions**: Smooth transitions on hover, focus, and active states
-- ✅ **Web Components** (optional JS): `<frmwrk-theme-toggle>`, `<frmwrk-badge>`, and `<frmwrk-alert>` custom elements
+- **Custom form styling**: Cohesive, visually interactive form controls
+- **Dark theme**: Complete "Night at Sea" theme via `.theme-dark` class on `<html>`
+- **Micro-interactions**: Smooth transitions on hover, focus, and active states
+- **Web Components** (optional JS): `<frmwrk-theme-toggle>`, `<frmwrk-badge>`, and `<frmwrk-alert>` custom elements
 
 ## Web Components
 
